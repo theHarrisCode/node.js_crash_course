@@ -1,59 +1,61 @@
-const http = require('http'); // http module
-const fs = require('fs') // file system module
-const _ = require('lodash') // lodash module
+// THIS FILE IS USED TO SHOW HANDLING BROWSER REQUESTS AND RESPONSE USING ONLY NODE.JS
 
-const server = http.createServer((req, res) => {
+// const http = require('http'); // http module
+// const fs = require('fs') // file system module
+// const _ = require('lodash') // lodash module
 
-    // lodash
-    const num = _.random(0,20);
-    console.log(num);
+// const server = http.createServer((req, res) => {
 
-    const greet = _.once(() => {
-        console.log('hello');
-    });
+//     // lodash
+//     const num = _.random(0,20);
+//     console.log(num);
 
-    greet();
-    greet();
+//     const greet = _.once(() => {
+//         console.log('hello');
+//     });
 
-    // set header content type
-    res.setHeader('Content-Type', 'text/html');
+//     greet();
+//     greet();
 
-    // checking what url the user visited | routing system
-    let path = './views/'; 
-    switch(req.url) {
-        case '/':
-            path += 'index.html';
-            res.statusCode = 200;
-            break;
-        case '/about':
-            path += 'about.html';
-            res.statusCode = 200;
-            break;
-        case '/about-us': // redirecting /about-me to /about
-            res.statusCode = 301;
-            res.setHeader('Location', '/about');
-            res.end();
-            break;
-        default:
-            path += '404.html';
-            res.statusCode = 404; 
-            break;
-    }
+//     // set header content type
+//     res.setHeader('Content-Type', 'text/html');
+
+//     // checking what url the user visited | routing system
+//     let path = './views/'; 
+//     switch(req.url) {
+//         case '/':
+//             path += 'index.html';
+//             res.statusCode = 200;
+//             break;
+//         case '/about':
+//             path += 'about.html';
+//             res.statusCode = 200;
+//             break;
+//         case '/about-us': // redirecting /about-me to /about
+//             res.statusCode = 301;
+//             res.setHeader('Location', '/about');
+//             res.end();
+//             break;
+//         default:
+//             path += '404.html';
+//             res.statusCode = 404; 
+//             break;
+//     }
      
-    //sending html file browser
-    fs.readFile(path, (err, data) => {
-        if(err){
-            console.log(err);
-            res.end();
-        }
-        else{
-            // res.write(data); since were only sending one piece of data, we can do res.end(data) and get the same results
-            res.end(data);
-        }
-    });
+//     //sending html file browser
+//     fs.readFile(path, (err, data) => {
+//         if(err){
+//             console.log(err);
+//             res.end();
+//         }
+//         else{
+//             // res.write(data); since were only sending one piece of data, we can do res.end(data) and get the same results
+//             res.end(data);
+//         }
+//     });
 
-});
+// });
 
-server.listen(3000, 'localhost', () => {
-    console.log('Listening for request on port 3000');
-});
+// server.listen(3000, 'localhost', () => {
+//     console.log('Listening for request on port 3000');
+// });
