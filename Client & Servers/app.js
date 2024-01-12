@@ -16,20 +16,24 @@ app.listen(3000)
 // sending index.html to browswer
 app.get('/', (req,res) => {
     // res.sendFile('./views/index.html', {root: __dirname}); sending a file to the browser
-    res.render('index') // render() will automatically look inside of 'views' folder
+    res.render('index'); // render() will automatically look inside of 'views' folder
 });
 
 // sending about.html to browser
 app.get('/about', (req, res) => {
-    res.sendFile('./views/about.html', { root: __dirname});
+    // res.sendFile('./views/about.html', { root: __dirname});
+    res.render('about');
 });
 
+app.get('/blogs/create', (req, res) => {
+    res.render('create');
+})
 // redirecting about-us to about page
-app.get('/about-us', (req, res) => {
-    res.redirect('/about');
-});
+// app.get('/about-us', (req, res) => {
+//     res.redirect('/about');
+// });
 
 // default response if none of the requested pages are valid | 404 error & setting the status code
 app.use((req, res) => {
-    res.status(404).sendFile('./views/404.html', { root: __dirname });
+    res.status(404).render('404');
 });
