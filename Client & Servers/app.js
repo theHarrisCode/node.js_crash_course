@@ -2,10 +2,11 @@
 
 const express = require('express')
 
-console.log(express);
 // create an express app 
 const app = express();
 
+// register view engine
+app.set('view engine', 'ejs');
 
 // listening for requests
 app.listen(3000)
@@ -14,7 +15,8 @@ app.listen(3000)
 
 // sending index.html to browswer
 app.get('/', (req,res) => {
-    res.sendFile('./views/index.html', {root: __dirname});
+    // res.sendFile('./views/index.html', {root: __dirname}); sending a file to the browser
+    res.render('index') // render() will automatically look inside of 'views' folder
 });
 
 // sending about.html to browser
