@@ -2,8 +2,10 @@
 
 const express = require('express')
 
+console.log(express);
 // create an express app 
 const app = express();
+
 
 // listening for requests
 app.listen(3000)
