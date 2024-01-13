@@ -16,9 +16,9 @@ app.listen(3000)
 // sending index.html to browswer
 app.get('/', (req,res) => {
     const blogs = [
-        {title: "Jayson Tatum scores 45 points", snippet: "random text random text random text random text "},
-        {title: "Jaylen brown dishes out 8 assists", snippet: "random text random text random text random text "},
-        {title: "Kristaps Porzingis grabs 14 rebounds", snippet: "random text random text random text random text "}
+        // {title: "Jayson Tatum scores 45 points", snippet: "random text random text random text random text "},
+        // {title: "Jaylen brown dishes out 8 assists", snippet: "random text random text random text random text "},
+        // {title: "Kristaps Porzingis grabs 14 rebounds", snippet: "random text random text random text random text "}
     ]
     // res.sendFile('./views/index.html', {root: __dirname}); sending a file to the browser
     res.render('index', {title: 'Home', blogs}); // render() will automatically look inside of 'views' folder

@@ -1,26 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Ninja | <%= title %></title>
-</head>
+    <%- include('./partials/head.ejs') %>
 <body> 
     <!-- <% const name = 'mario' %> javascript dynamically using ejs--> 
     <!-- <p><%= name %></p> exporting variable-->
 
-    <nav>
-        <div class="site-title">
-            <a href="/"><h1>Blog Ninja</a>
-            <p>A Net Ninja Site</p>
-        </div>
-        <ul>
-            <li><a href="/">Blogs</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/blogs/create">New Blogs</a></li>
-        </ul>
-    </nav>
- 
+    <%- include('./partials/nav.ejs') %> <!--partials for the nav html code-->
+
     <div class="blogs content">
         <h2>All Blogs</h2>
 
@@ -31,7 +17,10 @@
             <p class="snippet"><%= blog.snippet %></p>
 
          <% }) %>
-        <% } %>
+        <% } else { %>
+            <p>There are no blogs to display.</p>
+          <% } %>
+
     </div>
 
 </body>
