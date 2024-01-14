@@ -1,15 +1,24 @@
 // HANDLING BROWNSER REQUESTS & RESPONSES USING NODE.JS & EXPRESS
 
 const express = require('express')
+const morgan = require('morgan');
 
 // create an express app 
 const app = express();
+
+// connect to mongoDB 
+const dbURI = 'mongodb+srv://theharriscode401:14Mar3014Oct3?!@cluster0.swgfzzo.mongodb.net/'
+
 
 // register view engine
 app.set('view engine', 'ejs');
 
 // listening for requests
 app.listen(3000)
+
+//middleware & static files
+app.use(express.static('public'));
+app.use(morgan('dev'));
 
 // responding to requests
 
