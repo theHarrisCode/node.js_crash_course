@@ -1,20 +1,25 @@
 // HANDLING BROWNSER REQUESTS & RESPONSES USING NODE.JS & EXPRESS
 
-const express = require('express')
+const express = require('express');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
 
 // create an express app 
 const app = express();
 
 // connect to mongoDB 
-const dbURI = 'mongodb+srv://theharriscode401:14Mar3014Oct3?!@cluster0.swgfzzo.mongodb.net/'
+const username = 'theharriscode401'
+const password = '14Mar3014Oct3?!'
+const encodedPassword = encodeURIComponent(password);
 
+const dbURI = `mongodb+srv://${username}:${encodedPassword}@cluster0.swgfzzo.mongodb.net/cluster0?retryWrites=true&w=majority`
+mongoose.connect(dbURI)
+    .then((result) => app.listen(3000))
+    .catch((err) => console.log(err));
 
 // register view engine
 app.set('view engine', 'ejs');
 
-// listening for requests
-app.listen(3000)
 
 //middleware & static files
 app.use(express.static('public'));
