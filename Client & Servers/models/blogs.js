@@ -1,5 +1,5 @@
-const mongoose = requrie('mongoose');
-const Scheme = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const blogSchema = new Schema({
     title: {
@@ -15,3 +15,6 @@ const blogSchema = new Schema({
         required: true
     }
 }, {timestamps: true});
+
+const Blog = mongoose.model('Blog', blogSchema);
+module.exports = Blog;
