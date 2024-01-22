@@ -67,6 +67,14 @@
         color: turquoise;
     }
 
+    .author{
+      margin-top: 10px;
+    }
+    
+    .author strong{
+      padding-left: 5px;
+    }
+
     /* details styles */
     .details{
         position: relative;

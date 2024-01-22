@@ -15,9 +15,13 @@
             <a class="single" href="/blogs/<%= blog._id %>">
             <h3 class="title"><%= blog.title %></h3>
             <p class="snippet"><%= blog.snippet %></p>
-            <!-- </a>  -->
+                <% if (blog.author == undefined){ %>
+                    <p style="margin-top: 10px;">No Author</p>
+                <% } else { %>
+                <p class="author">Created by: <strong><%= blog.author %></strong></p>
+                <% } %>
             <br>
-         <% }) %>
+        <% }) %>
         <% } else { %>
             <p>There are no blogs to display.</p>
           <% } %>
