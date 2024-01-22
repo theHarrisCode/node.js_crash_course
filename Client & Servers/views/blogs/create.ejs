@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/head.ejs') %>
+    <%- include('../partials/head.ejs') %>
     <body>   
-        <%- include('./partials/nav.ejs') %> <!--partials for the nav html code-->
+        <%- include('../partials/nav.ejs') %> <!--partials for the nav html code-->
         <div class="create-blog content">
             <form action="/blogs" method="POST"> <!--post request sends the form data to server || request is sent to /blogs-->
                 <label for="title">Blog Title:</label>
@@ -14,6 +14,6 @@
                 <button>Submit</button>
             </form>
         </div> 
-        <%- include('./partials/footer') %>
+        <%- include('../partials/footer') %>
     </body>
 </html>

@@ -3,7 +3,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const Blog = require('./models/blogs');
+const blogRoutes = require('./routes/blogRoutes')
 
 // create an express app 
 const app = express();
@@ -27,44 +27,6 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true })); // middleware used to retrieve the object blog || req.body
 app.use(morgan('dev'));
 
-//sandbox routes
-
-// app.get('/add-blog', (req, res) => {
-//     const blog = new Blog({
-//         title: 'new blog',
-//         snippet: 'about my new blog',
-//         body: 'more about my new blog'
-//     });
-
-//     blog.save()
-//         .then((result) => {
-//         res.send(result)
-//     })
-//     .catch((err) => {
-//         console.log("You have an error!\n", err);
-//     });
-// });
-
-// app.get('/all-blogs', (req, res) => {
-//     Blog.find()
-//         .then((result) => {
-//             res.send(result)
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//         });
-// });
-
-// app.get('/single-blog', (req, res) => {
-//     Blog.findById('65a564d3418b17249c412673')
-//     .then((result) => {
-//         res.send(result);
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     });
-// });
-
 // responding to requests
 
 // sending index.html to browswer
@@ -79,57 +41,8 @@ app.get('/about', (req, res) => {
 });
 
 // blog routes 
- 
-app.get('/blogs', (req, res) => {
-    Blog.find().sort({ createdAt: -1 }) // sorts blog from newest to oldest
-    .then((result) => {
-        res.render('index', {title: 'All Blogs', blogs: result})
-    })
-    .catch((err) => {
-        console.log(err);
-    })
-})
+app.use('/blogs', blogRoutes);
 
-app.post('/blogs', (req, res) => {
-    const blog = new Blog(req.body);
-    blog.save()
-        .then((result) => {
-            console.log("Blog Saved");
-            res.redirect('/blogs');
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-
-app.get('/blogs/create', (req, res) => {
-    res.render('create', {title: 'Create a new Blog'});
-});
-
-
-app.get('/blogs/:id',(req, res) => {
-    const id = req.params.id;
-    Blog.findById(id)
-    .then((result) => {
-        res.render('details', { blog: result, title: "Blog Details" })
-    })
-    .catch((err) => {
-        console.log(err); 
-    });
-});
-
-app.delete('/blogs/:id', (req, res) => {
-    const id = req.params.id;
-    
-    Blog.findByIdAndDelete(id)
-    .then((result) => {
-        res.json({ redirect: '/blogs' })
-    })
-    .catch((err) => {
-        console.log(err);
-    })
-})
- 
 // default response if none of the requested pages are valid | 404 error & setting the status code
 app.use((req, res) => {
     res.status(404).render('404', {title: '404'});
