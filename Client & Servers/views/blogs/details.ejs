@@ -8,6 +8,12 @@
         <div class="content">
             <p><%= blog.body %></p>
         </div>
+        <p class="details-author">Created by: </p>
+        <% if (blog.author == undefined){ %>
+            <p style="margin-top: 10px; display: inline;"><strong>Anonymous</strong></p>
+        <% } else { %>
+        <strong><%= blog.author %> </strong></p>
+        <% } %>
         <a class="delete" data-doc="<%= blog._id %>">
             <img src="/trashcan.svg" alt="delete-icon">
         </a>
