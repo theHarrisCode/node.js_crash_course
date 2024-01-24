@@ -1,5 +1,6 @@
 const Blog = require('../models/blogs');
 
+
 // blog_index, blog_details, blog_create_get, blog_create_post, blog_delete
 
 const blog_index = (req, res) => {
@@ -23,6 +24,33 @@ const blog_details = (req, res) => {
     });
 }
 
+const blog_edit_get = (req, res) => {
+    const id = req.params.id;
+    Blog.findById(id)
+    .then((result) => {
+        res.render('blogs/edit', {blog: result, title: "Edit Blog"})
+    })
+    .then((data) => {
+        res.json({redirect: '/'})
+    })
+    .catch((err) => {
+        res.status(404).render('404', {title: 'Blog not found'}); 
+    });
+};
+
+const blog_edit_put = async (req, res) => {
+    const id = req.params.id
+
+    try{
+        const updateBlog = await Blog.findByIdAndUpdate(id, req.body, {new: true})
+        res.redirect(`blogs/${updateBlog._id}`);
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).send("Internal Server Error")
+    }
+}
+
 const blog_create_get = (req, res) => {
     res.render('blogs/create', {title: 'Create a new Blog'});
 }
@@ -38,6 +66,7 @@ const blog_create_post = (req, res) => {
             console.log(err);
         });
 }
+
 
 const blog_delete = (req, res) => {
     const id = req.params.id;
@@ -57,5 +86,7 @@ module.exports = {
     blog_details,
     blog_create_get,
     blog_create_post,
-    blog_delete
+    blog_delete,
+    blog_edit_get,
+    blog_edit_put
 }

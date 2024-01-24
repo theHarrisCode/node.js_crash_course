@@ -6,6 +6,10 @@ const blogSchema = new Schema({
         type: String,
         required: true 
     },
+    author: {
+        type: String, 
+        required: true
+    },
     snippet: {
         type: String,
         required: true
@@ -13,11 +17,7 @@ const blogSchema = new Schema({
     body: {
         type: String,
         required: true
-    },
-    author: {
-        type: String, 
-        required: true
-    }
+    }   
 }, {timestamps: true});
 
 const Blog = mongoose.model('Blog', blogSchema);

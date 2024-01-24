@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+    <body>
+        <%- include('../partials/nav.ejs') %>
+        <div class="create-blog content">
+            <form method="POST" action="/blogs/<%= blog._id %>?_method=PUT"> <!--post request sends the form data to server || request is sent to /blogs-->
+                <label for="title">Blog Title:</label>
+                <input type="text" id="title" name="title" value="<%= blog.title %>" required >
+                <label for="author">Blog Author</label>
+                <input type="text" id="author" name="author" value="<%= blog.author %>" required>
+                <label for="snippet">Blog Snippet:</label>
+                <input type="text" id="snippet" name="snippet" value="<%= blog.snippet %>" required>
+                <label for="body">Blog Body:</label>
+                <textarea id="body" name="body" required><%= blog.body %></textarea>
+                <!-- <div> -->
+                    <button type="submit">Save</button>      
+                    <button type="button" class="cancel">Cancel</button>          
+            </form>
+                <!-- </div> -->
+    </body>
+    <%- include('../partials/footer.ejs') %>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const cancelButton = document.querySelector('.cancel');
+
+        cancelButton.addEventListener('click', () => { 
+            document.location.href = '/'; // redirect to home page
+        });
+    })
+    </script>
+</html>

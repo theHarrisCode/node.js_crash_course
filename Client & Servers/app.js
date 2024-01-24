@@ -4,6 +4,8 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const blogRoutes = require('./routes/blogRoutes')
+const methodOverride = require('method-override');
+
 
 // create an express app 
 const app = express();
@@ -26,6 +28,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true })); // middleware used to retrieve the object blog || req.body
 app.use(morgan('dev'));
+app.use(methodOverride('_method'));
 
 // responding to requests
 
